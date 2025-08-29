@@ -4,8 +4,7 @@ import { useLocation } from "react-router-dom";
 function Header() {
       const location = useLocation();
       const currentPath = location.pathname;
-
-      // Cek apakah path saat ini adalah salah satu dari halaman Tools
+      
       const isToolsActive =
         currentPath.startsWith("/shortener") ||
         currentPath.startsWith("/expander") ||
@@ -30,7 +29,6 @@ function Header() {
               </a>
             </li>
 
-            {/* Tools Dropdown */}
             <li className="relative group">
               <div
                 className={`cursor-pointer transition-colors duration-300 ${

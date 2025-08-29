@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const menus = [
@@ -12,10 +12,19 @@ const menus = [
 function MenuSwitcher() {
   const [activeMenu, setActiveMenu] = useState("shorten"); // default pertama
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Update activeMenu berdasarkan current path
+  useEffect(() => {
+    const currentMenu = menus.find((menu) => menu.path === location.pathname);
+    if (currentMenu) {
+      setActiveMenu(currentMenu.id);
+    }
+  }, [location.pathname]);
 
   const handleClick = (id, path) => {
     setActiveMenu(id);
-    navigate(path); 
+    navigate(path);
   };
 
   return (
@@ -29,7 +38,7 @@ function MenuSwitcher() {
           <span className="font-semibold text-orange-400">
             mengelola dan mengoptimalkan link
           </span>{" "}
-          tersedia dalam satu platform. Pilih fitur sesuai kebutuhan Anda 
+          tersedia dalam satu platform. Pilih fitur sesuai kebutuhan Anda
         </p>
       </div>
 
@@ -46,7 +55,6 @@ function MenuSwitcher() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {/* Indicator */}
             {activeMenu === id && (
               <motion.div
                 layoutId="activeIndicator"
@@ -55,8 +63,6 @@ function MenuSwitcher() {
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               />
             )}
-
-            {/* Label, tambahin z-index */}
             <span className="relative z-10">{label}</span>
           </motion.button>
         ))}

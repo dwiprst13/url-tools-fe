@@ -28,12 +28,12 @@ function Home() {
             >
               Coba Gratis 🚀
             </Link>
-            <a
+            {/* <a
               href="#features"
               className="px-6 py-3 rounded-xl border border-orange-500 hover:bg-orange-600/20 transition-all text-lg font-medium"
             >
               Lihat Fitur
-            </a>
+            </a> */}
           </div>
         </div>
 
