@@ -10,7 +10,7 @@ function Header() {
         currentPath.startsWith("/shortener") ||
         currentPath.startsWith("/expander") ||
         currentPath.startsWith("/qr") ||
-        currentPath.startsWith("/analyzer");
+        currentPath.startsWith("/analyze");
   return (
     <header className="Header fixed top-0 left-0 w-full h-20 bg-gray-950 text-white shadow-lg z-50">
       <div className="max-w-5xl w-full mx-auto flex justify-between items-center h-full px-6">

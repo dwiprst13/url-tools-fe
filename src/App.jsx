@@ -2,11 +2,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
 import Home from "./Pages/Home";
-import UrlShortener from "./Pages/UrlShortener";
 import Footer from "./Components/Footer";
+import URLShortener from "./Pages/UrlShortener";
+import URLExpander from "./Pages/URLExpander";
+import QRGenerator from "./Pages/QRGenerator";
+import MenuSwitcher from "./Components/MenuSwitcher";
+import { useState } from "react";
+import TermsOfService from "./Components/TermsOfService";
+import MainLayout from "./Pages/MainLayout";
+import PrivacyPolicy from "./Components/PolicyPage";
+import URLAnalyzer from "./Pages/URLAnalyzer";
 // import About from "./Pages/About"; // Contoh halaman tambahan
 
 function App() {
+  const [menu, setMenu] = useState("home");
   return (
     <Router>
       <div className="App relative bg-gray-900 overflow-hidden">
@@ -19,8 +28,14 @@ function App() {
           <div className="content max-w-5xl mx-auto relative pt-20">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/shortener" element={<UrlShortener />} />
-              {/* <Route path="/about" element={<About />} /> */}
+              <Route element={<MainLayout setMenu={setMenu} />}>
+                <Route path="/shortener" element={<URLShortener />} />
+                <Route path="/expander" element={<URLExpander />} />
+                <Route path="/analyze" element={<URLAnalyzer />} />
+                <Route path="/qr" element={<QRGenerator />} />
+              </Route>
+              <Route path="/tos" element={<TermsOfService />} />
+              <Route path="/privacypolicy" element={<PrivacyPolicy />} />
             </Routes>
           </div>
           <Footer />
